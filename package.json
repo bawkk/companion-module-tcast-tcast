@@ -1,0 +1,29 @@
+{
+	"name": "tcast-playout",
+	"version": "1.0.0",
+	"description": "Bitfocus Companion module for TCast playout",
+	"main": "main.js",
+	"type": "commonjs",
+	"author": "Henry Kamstra <henrykamstra12@gmail.com>",
+	"license": "MIT",
+	"repository": "https://github.com/bawkk/companion-module-tcast-playout",
+	"bugs": "https://github.com/bawkk/companion-module-tcast-playout/issues",
+	"scripts": {
+		"format": "prettier -w .",
+		"package": "companion-module-build"
+	},
+	"engines": {
+		"node": "^22.20",
+		"yarn": "^4"
+	},
+	"packageManager": "yarn@4.17.0",
+	"prettier": "@companion-module/tools/.prettierrc.json",
+	"dependencies": {
+		"@companion-module/base": "1.14.1",
+		"ws": "^8.21.0"
+	},
+	"devDependencies": {
+		"@companion-module/tools": "^2.7.2",
+		"prettier": "^3.6.2"
+	}
+}
