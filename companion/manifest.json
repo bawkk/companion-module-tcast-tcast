@@ -1,19 +1,19 @@
 {
-	"id": "tcast-playout",
-	"name": "tcast-playout",
+	"id": "tcast-tcast",
+	"name": "tcast-tcast",
 	"shortname": "TCast",
 	"description": "Control TCast playout: trigger clips, transport, black, clear, and volume, with live button feedback.",
 	"version": "0.0.0",
 	"license": "MIT",
-	"repository": "https://github.com/bawkk/companion-module-tcast-playout",
-	"bugs": "https://github.com/bawkk/companion-module-tcast-playout/issues",
+	"repository": "https://github.com/bawkk/companion-module-tcast-tcast",
+	"bugs": "https://github.com/bawkk/companion-module-tcast-tcast/issues",
 	"maintainers": [
 		{
 			"name": "Henry Kamstra",
 			"email": "henrykamstra12@gmail.com"
 		}
 	],
-	"legacyIds": ["tcast"],
+	"legacyIds": ["tcast-playout", "tcast"],
 	"runtime": {
 		"type": "node22",
 		"api": "nodejs-ipc",
