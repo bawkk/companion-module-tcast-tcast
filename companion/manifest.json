@@ -5,8 +5,8 @@
 	"description": "Control TCast playout: trigger clips, transport, black, clear, and volume, with live button feedback.",
 	"version": "0.0.0",
 	"license": "MIT",
-	"repository": "https://github.com/bawkk/companion-module-tcast-tcast",
-	"bugs": "https://github.com/bawkk/companion-module-tcast-tcast/issues",
+	"repository": "https://github.com/bitfocus/companion-module-tcast-tcast",
+	"bugs": "https://github.com/bitfocus/companion-module-tcast-tcast/issues",
 	"maintainers": [
 		{
 			"name": "Henry Kamstra",
