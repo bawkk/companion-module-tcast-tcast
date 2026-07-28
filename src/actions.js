@@ -24,7 +24,7 @@ function getActions(self) {
 		trigger_clip: {
 			name: 'Trigger / clear clip (toggle, by name)',
 			description:
-				'Takes the clip live. Pressing it again while the clip is already live clears it — so a single button toggles the clip on and off. Pair with the "Clip is live" feedback for a button that lights while it is on air.',
+				'Takes the clip live. Pressing it again while the clip is already live clears it, so a single button toggles the clip on and off. Pair with the "Clip is live" feedback for a button that lights while it is on air.',
 			options: [
 				{
 					type: 'dropdown',

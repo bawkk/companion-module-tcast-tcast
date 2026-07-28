@@ -53,8 +53,8 @@ class TcastInstance extends InstanceBase {
 			const prevCount = this.state && this.state.clips ? this.state.clips.length : -1
 			const prevClipIds = this.clipSignature(this.state)
 			this.state = msg
-			// Only rebuild dropdowns when the clip set actually changed —
-			// avoids churn on every play/pause tally update.
+			// Only rebuild dropdowns when the clip set actually changed.
+			// Avoids churn on every play/pause tally update.
 			const newSig = this.clipSignature(msg)
 			if (newSig !== prevClipIds || (msg.clips && msg.clips.length !== prevCount)) {
 				this.rebuildDefinitions()

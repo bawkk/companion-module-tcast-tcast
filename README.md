@@ -1,52 +1,22 @@
 # TCast Companion module
 
-A [Bitfocus Companion](https://bitfocus.io/companion) module for controlling TCast from a Stream Deck. It drives TCast's HTTP + WebSocket control API (enabled under **Settings → Remote Control**, default port `7341`).
+A [Bitfocus Companion](https://bitfocus.io/companion) module for controlling [TCast](https://tcast.app) playout from a Stream Deck. Trigger clips, run transport, cut to black, clear layers, and ride master volume, with live button feedback.
 
-See [companion/HELP.md](companion/HELP.md) for actions, feedbacks, and connection setup.
+It talks to TCast's HTTP + WebSocket control API, which you switch on in TCast under **Settings → Remote Control** (default port `7341`).
 
-## Install as a developer module
+## Install
 
-Plain CommonJS — no transpile step. Yarn 4 is required (Bitfocus CI rejects
-`package-lock.json`); on Node ≥ 25, install corepack first (`npm i -g corepack`).
+Companion 4.0 and later: **Connections → Add connection**, search for **TCast**, and install it from the module store.
 
-```sh
-cd companion-module
-corepack enable && yarn install
+## Setup
 
-mkdir -p ~/companion-dev
-ln -s "$(pwd)" ~/companion-dev/tcast-tcast
-```
+1. In TCast, open **Settings → Remote Control**, turn on **Enable remote control**, and note the port and address it shows.
+2. In Companion, add the TCast connection and fill in the host or IP, the port, and the control password if you set one in TCast.
+3. The connection indicator turns green once it reaches TCast, and clip dropdowns fill in from the live board.
 
-Before submitting a release, test the _packaged_ build instead — that's what
-users get:
+If you don't set a control password in TCast, the API is unauthenticated and anyone on the network can drive the show. Set one, or keep TCast on a private network.
 
-```sh
-yarn companion-module-build --dev --output=pkg
-ln -sfn "$(pwd)/pkg" ~/companion-dev/tcast-tcast
-```
-
-Then in Companion:
-
-1. Open the Companion **launcher → gear icon → Developer modules path**, set it to `~/companion-dev`, and relaunch.
-2. In the web UI: **Connections → Add connection → TCast**.
-3. Enter the host/IP and port from TCast's **Settings → Remote Control**.
-
-The connection goes green once it reaches TCast; clip dropdowns populate from the live board.
-
-## Layout
-
-```
-companion-module/
-  main.js                 # InstanceBase: wires client → actions/feedbacks/variables
-  companion/manifest.json # module id, runtime (node22), entrypoint
-  companion/HELP.md       # in-app help
-  src/config.js           # host + port + optional control password
-  src/client.js           # WebSocket (feedback) + fetch (commands), auto-reconnect
-  src/actions.js          # trigger, transport, black, clear, volume, mute
-  src/feedbacks.js        # clip-live tally, black, live, playing, muted
-  src/variables.js        # clip name, time, duration, master dB, …
-  src/presets.js          # ready-made buttons
-```
+[companion/HELP.md](companion/HELP.md) has the full list of actions, feedbacks, variables, and presets. It's the same help you get from the **?** button on the connection in Companion.
 
 ## Control API reference
 
@@ -62,8 +32,28 @@ GET  /api/clips                     clip list
      /api/clip/next|prev
      /api/black/on|off|toggle
      /api/clear/{layer}|all         layer = media|overlay|background|audio
-     /api/volume/set?db=-12         set master volume in dB (-60…6)
-     /api/volume/step?by=1          nudge master volume ±3 dB
+     /api/volume/set?db=-12         set master volume in dB (-60 to 6)
+     /api/volume/step?by=1          nudge master volume by 3 dB
      /api/mute/on|off|toggle
      ws://host:port/                feedback socket (snapshot on connect + on change)
 ```
+
+## Source layout
+
+```
+main.js                 # InstanceBase: wires client to actions/feedbacks/variables
+companion/manifest.json # module id, runtime (node22), entrypoint
+companion/HELP.md       # in-app help
+src/config.js           # host + port + optional control password
+src/client.js           # WebSocket (feedback) + fetch (commands), auto-reconnect
+src/actions.js          # trigger, transport, black, clear, volume, mute
+src/feedbacks.js        # clip-live tally, black, live, playing, muted
+src/variables.js        # clip name, time, duration, master dB
+src/presets.js          # buttons you can drop straight onto a page
+```
+
+Plain CommonJS, no build step. Yarn 4 is required (`corepack enable && yarn install`).
+
+## License
+
+MIT. See [LICENSE](LICENSE).
